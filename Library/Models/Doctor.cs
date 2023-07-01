@@ -1,15 +1,16 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Models
 {
     public class Doctor
     {
         [Key]
-        public int Doctor_ID { get; set; }
+        public int DoctorID { get; set; }
         [Required]
-        public string? Doctor_Name { get; set; }
+        public string? DoctorName { get; set; }
         [Required]
         [Range(1, 150)]
         public int Age { get; set; }
@@ -22,15 +23,13 @@ namespace Library.Models
         public string? Specialization { get; set; }
         [Required]
         [EmailAddress]
-        public string? Doctor_Email { get; set; }
+        public string? DoctorEmail { get; set; }
         [Required]
-        public string? Doctor_Address { get; set; }
+        public string? DoctorAddress { get; set; }
         [Required]
-        [RegularExpression(@"^\d{10}$")]
-        public int Doctor_Mobile { get; set; }
+        public int DoctorMobile { get; set; }
         [Required]
-        [RegularExpression(@"^\d{10}$")]
-        public int Emergency_No { get; set; }
+        public int EmergencyNo { get; set; }
         [Required]
         public string? Doctor_Experience { get; set; }
         [Required]
@@ -39,13 +38,18 @@ namespace Library.Models
         public DateTime Constulting_Time { get; set; }
         [Required]
         public string? Username { get; set; }
-        [Required]
-        public string? Password { get; set; }
+        public string? HashedPassword { get; set; }
+
         [Required]
         [RegularExpression("^(success)$")]
         public string Status { get; set; } = "pending";
         public string? Review { get; set; }
         public DateTime LastLogin { get; set; }
-        public ICollection<Patient>? Patients { get; set; }
+
+        public string? ImageName { get; set; }
+
+        [NotMapped]
+        public IFormFile File { get; set; }
+        public ICollection<Patients>? Patient { get; set; }
     }
 }

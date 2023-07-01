@@ -1,11 +1,12 @@
-﻿using Doctorapp.Repositories;
-using Doctors.Models.DTO;
-using ModelLibrary.Models;
+﻿using DoctorPrj.Repositories;
+using Doctors.Models;
+using Library.Models.DTO;
+using Library.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Doctorapp.Services
+namespace DoctorPrj.Services
 {
     public class DoctorService
     {

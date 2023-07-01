@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelLibrary.Models
+namespace Library.Models
 {
-    internal class HospitalContext : DbContext
+    public class HospitalContext : DbContext
     {
        
 

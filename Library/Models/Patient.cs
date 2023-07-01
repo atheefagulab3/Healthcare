@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Library.Models
 {
-    public class Patient
+    public class Patients
     {
         [Key]
         public int Patient_ID { get; set; }
+
         [Required]
         public string? Patient_Name { get; set; }
         [Required]
-        
         public int Age { get; set; }
         [Required]
         [RegularExpression("^(male|female|other)$")]
@@ -22,20 +22,16 @@ namespace Library.Models
         public string? Patient_Address { get; set; }
         [Required]
         [RegularExpression(@"^\d{10}$")]
-        public int Patient_Phone { get; set; }
+        public long Patient_Phone { get; set; }
         [Required]
         [EmailAddress]
         public string? Patient_Email { get; set; }
         [Required]
         public string? Patient_UserName { get; set; }
         [Required]
-        public string? Patient_Password { get; set; }
-        [Required]
-        public DateTime Patient_DOB { get; set; }
-        [Required]
-        [RegularExpression(@"^(admitted|not admitted)$")]
-        public string? Patient_Status { get; set; }
-        [Required]
-        public int Patient_Payment { get; set; }
+        public string? Patient_HashedPassword { get; set; }
+
+
+
     }
 }

@@ -29,9 +29,9 @@ namespace Token.Controllers
                 var Doctors = await _context.Doctor.ToListAsync();
                 var adminDtos = Doctors.Select(a => new Doctor
                 {
-                    Doctor_ID = a.Doctor_ID,
+                    DoctorID = a.DoctorID,
                     Username = a.Username,
-                    Password = HashPassword(a.Password)
+                    HashedPassword = (a.HashedPassword)
                 }).ToList();
 
                 return adminDtos;
@@ -41,15 +41,7 @@ namespace Token.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error occurred while retrieving admins.");
             }
         }
-        private string HashPassword(string Password)
-        {
-
-            using (var sha256 = SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Password));
-                return Convert.ToBase64String(hashedBytes);
-            }
-        }
+       
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Doctor>> GetDoctor(int id)
@@ -72,7 +64,7 @@ namespace Token.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAdmin(int id, Doctor Doctor)
         {
-            if (id != Doctor.Doctor_ID)
+            if (id != Doctor.DoctorID)
             {
                 return BadRequest();
             }
@@ -97,7 +89,7 @@ namespace Token.Controllers
             _context.Doctor.Add(Doctor);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDoctor", new { id = Doctor.Doctor_ID }, Doctor);
+            return CreatedAtAction("GetDoctor", new { id = Doctor.DoctorID }, Doctor);
         }
 
 

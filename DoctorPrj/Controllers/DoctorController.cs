@@ -1,13 +1,11 @@
-﻿
-using Doctorapp.Repositories;
-using Doctorapp.Services;
-using Doctors.Models.DTO;
+﻿using DoctorPrj.Repositories;
+using DoctorPrj.Services;
+using Library.Models;
+using Library.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
-using ModelLibrary.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Doctorapp.Controllers
+
+namespace DoctorPrj.Controllers
 {
     [ApiController]
     [Route("api/doctors")]

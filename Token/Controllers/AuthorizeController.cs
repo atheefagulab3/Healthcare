@@ -30,9 +30,9 @@ namespace Token.Controllers
         [HttpPost("Doctor")]
         public async Task<IActionResult> PostDoctor(Doctor _DData)
         {
-            if (_DData != null && _DData.Username != null && _DData.Password != null)
+            if (_DData != null && _DData.Username != null && _DData.HashedPassword != null)
             {
-                var Doctor = await GetDoctor(_DData.Username, _DData.Password);
+                var Doctor = await GetDoctor(_DData.Username, _DData.HashedPassword);
 
                 if (Doctor != null)
                 {
@@ -41,9 +41,9 @@ namespace Token.Controllers
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                         new Claim("Doctor_ID", Doctor.Doctor_ID.ToString()),
+                         new Claim("DoctorID", Doctor.DoctorID.ToString()),
                          new Claim("Username", Doctor.Username),
-                        new Claim("Password",Doctor.Password),
+                        new Claim("HashedPassword",Doctor.HashedPassword),
                         new Claim(ClaimTypes.Role, DoctorRole)
 
                     };
@@ -70,9 +70,9 @@ namespace Token.Controllers
             }
         }
 
-        private async Task<Doctor> GetDoctor(string Username, string Password)
+        private async Task<Doctor> GetDoctor(string Username, string HashedPassword)
         {
-            return await _context.Doctor.FirstOrDefaultAsync(u => u.Username == Username && u.Password == Password);
+            return await _context.Doctor.FirstOrDefaultAsync(u => u.Username == Username && u.HashedPassword == HashedPassword);
         }
 
 

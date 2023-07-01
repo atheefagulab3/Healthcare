@@ -1,4 +1,4 @@
-﻿namespace Doctors.Models.DTO
+﻿namespace Library.Models.DTO
 {
     public class DoctorPatientDTO
     {

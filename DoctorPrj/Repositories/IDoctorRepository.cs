@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ModelLibrary.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Library.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Doctorapp.Repositories
+
+namespace DoctorPrj.Repositories
 {
     public interface IDoctorRepository
     {
