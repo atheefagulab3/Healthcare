@@ -8,10 +8,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Doctors.Models;
-using Doctors.Models.Helpers;
-using Library.Models;
 using Library.Models.DTO;
+using DoctorPrj.Models.Helpers;
+using DoctorPrj.Models;
 
 namespace DoctorPrj.Controllers
 {

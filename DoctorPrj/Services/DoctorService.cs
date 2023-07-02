@@ -1,5 +1,4 @@
 ﻿using DoctorPrj.Repositories;
-using Doctors.Models;
 using Library.Models.DTO;
 using Library.Models;
 using System.Collections.Generic;

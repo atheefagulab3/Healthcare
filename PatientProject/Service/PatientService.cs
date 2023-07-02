@@ -1,8 +1,8 @@
-﻿using Library.Models;
-using PatientPrj.DTO;
-using PatientPrj.Interface;
+﻿using PatientProject.DTO;
+using PatientProject.Interface;
+using PatientProject.Models;
 
-namespace PatientPrj.Service
+namespace PatientProject.Service
 {
     public class PatientService : IPatientDTO<Patient_Profile_DTO>
     {
@@ -18,14 +18,14 @@ namespace PatientPrj.Service
             {
                 var patients = await repo.GetAll();
 
-                var patientProfileDTOs = patients.Select(patient => new Patient_Profile_DTO
+                var patientProfileDTOs = patients.Select(Patient => new Patient_Profile_DTO
                 {
-                    Patient_Name = patient.Patient_Name,
-                    Age = patient.Age,
-                    Gender = patient.Gender,
-                    BloodGroup = patient.BloodGroup,
-                    Patient_Address = patient.Patient_Address,
-                    Patient_Phone = patient.Patient_Phone
+                    Patient_Name = Patient.Patient_Name,
+                    Age = Patient.Age,
+                    Gender = Patient.Gender,
+                    BloodGroup = Patient.BloodGroup,
+                    Patient_Address = Patient.Patient_Address,
+                    Patient_Phone = Patient.Patient_Phone
                 }).ToList();
 
                 return patientProfileDTOs;

@@ -1,6 +1,6 @@
 ﻿using BCryptNet = BCrypt.Net.BCrypt;
 
-namespace Doctors.Models.Helpers
+namespace DoctorPrj.Models.Helpers
 {
     public class PasswordHasher
     {

@@ -25,6 +25,6 @@ namespace Library.Models
         public string? Diagnosis { get; set; }
         public string? Treatment { get; set; }
         public Doctor? Doctor { get; set; }
-        public Patients? Patient { get; set; }
+        public Patient? Patient { get; set; }
     }
 }

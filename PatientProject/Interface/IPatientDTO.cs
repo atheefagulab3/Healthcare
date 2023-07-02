@@ -1,4 +1,4 @@
-﻿namespace PatientPrj.Interface
+﻿namespace PatientProject.Interface
 {
     public interface IPatientDTO<T>
     {

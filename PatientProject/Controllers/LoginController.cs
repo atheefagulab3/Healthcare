@@ -3,13 +3,14 @@ using Library.Models.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using PatientPrj.DTO;
-using System.Data.Entity;
+using PatientProject.DTO;
+using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using PatientProject.Models;
 
-namespace PatientPrj.Controllers
+namespace PatientProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -67,9 +68,9 @@ namespace PatientPrj.Controllers
                 }
             }
 
-            private async Task<Patients> GetPatient(string username)
+            private async Task<Patient> GetPatient(string username)
             {
-                return await _context.Patient.FirstOrDefaultAsync(d => d.Patient_UserName == username);
+                return await _context.Patients.FirstOrDefaultAsync(d => d.Patient_UserName == username);
             }
         }
     }

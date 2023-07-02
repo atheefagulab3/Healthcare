@@ -1,4 +1,5 @@
 ﻿
+using DoctorPrj.Models;
 using Library.Models;
 using Library.Models.Helpers;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DoctorPrj.Repositories
 {
-        internal class DoctorRepository : IDoctorRepository
+    internal class DoctorRepository : IDoctorRepository
         {
             private readonly HospitalContext _context;
 
@@ -36,7 +37,7 @@ namespace DoctorPrj.Repositories
 
             public async Task<int> AddDoctorAsync([FromForm] Doctor doctor, string password)
             {
-                string path = Path.Combine(@"C:\Users\pc\Desktop\img", doctor.ImageName);
+                string path = Path.Combine(@"C:\Users\HP\Pictures\img", doctor.ImageName);
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
                     doctor.File.CopyTo(stream);

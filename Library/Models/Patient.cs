@@ -1,10 +1,9 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 namespace Library.Models
 {
-    public class Patients
+    public class Patient
     {
         [Key]
         public int Patient_ID { get; set; }

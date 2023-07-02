@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Models
+namespace DoctorPrj.Models
 {
     public class HospitalContext : DbContext
     {
-       
+
 
         public DbSet<Doctor> Doctors { get; set; }
 

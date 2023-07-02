@@ -1,4 +1,4 @@
-﻿namespace PatientPrj.DTO
+﻿namespace PatientProject.DTO
 {
     public class Patient_Profile_DTO
     {

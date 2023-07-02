@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppointmentPrj.Migrations
 {
     [DbContext(typeof(AppointmentContext))]
-    [Migration("20230702044213_inti")]
-    partial class inti
+    [Migration("20230702063904_bigbingh")]
+    partial class bigbingh
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

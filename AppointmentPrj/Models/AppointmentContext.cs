@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Library.Models
+namespace AppointmentPrj.Models
 {
-    public class AppointmentContext :DbContext
+    public class AppointmentContext : DbContext
     {
 
         public DbSet<Doctor> Doctors { get; set; }
 
-        public DbSet<Patients> Patients { get; set; }
+        public DbSet<Patient> Patients { get; set; }
 
         public DbSet<Appoinments> Appoinments { get; set; }
 

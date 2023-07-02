@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppointmentPrj.Migrations
 {
     [DbContext(typeof(AppointmentContext))]
-    [Migration("20230702044213_inti")]
-    partial class inti
+    [Migration("20230702074956_health")]
+    partial class health
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,8 +113,8 @@ namespace AppointmentPrj.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DoctorMobile")
-                        .HasColumnType("int");
+                    b.Property<long>("DoctorMobile")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("DoctorName")
                         .IsRequired()
@@ -124,8 +124,8 @@ namespace AppointmentPrj.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmergencyNo")
-                        .HasColumnType("int");
+                    b.Property<long>("EmergencyNo")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -160,7 +160,7 @@ namespace AppointmentPrj.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("Library.Models.Patients", b =>
+            modelBuilder.Entity("Library.Models.Patient", b =>
                 {
                     b.Property<int>("Patient_ID")
                         .ValueGeneratedOnAdd()
@@ -220,7 +220,7 @@ namespace AppointmentPrj.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Library.Models.Patients", "Patient")
+                    b.HasOne("Library.Models.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("Patient_ID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -231,7 +231,7 @@ namespace AppointmentPrj.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("Library.Models.Patients", b =>
+            modelBuilder.Entity("Library.Models.Patient", b =>
                 {
                     b.HasOne("Library.Models.Doctor", null)
                         .WithMany("Patient")

@@ -4,7 +4,7 @@
     {
         public string? ImageName { get; set; }
         public string? DoctorName { get; set; }
-        public int DoctorMobile { get; set; }
+        public long DoctorMobile { get; set; }
         public string? Specialization { get; set; }
         public string? Doctor_Experience { get; set; }
         public string? Constulting_Day { get; set; }

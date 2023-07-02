@@ -1,9 +1,10 @@
 ﻿using Library.Models;
 using Library.Models.Helpers;
-using PatientPrj.Interface;
-using System.Data.Entity;
+using PatientProject.Interface;
+using Microsoft.EntityFrameworkCore;
+using PatientProject.Models;
 
-namespace PatientPrj.Service
+namespace PatientProject.Service
 {
     public class PatientRepo : IPatient
     {
@@ -12,47 +13,48 @@ namespace PatientPrj.Service
             {
                 context = _context;
             }
-            public async Task<Patients> DeleteById(int id)
+            public async Task<Patient> DeleteById(int id)
             {
-                var patient = await context.Patient.FindAsync(id);
+                var patient = await context.Patients.FindAsync(id);
 
                 if (patient != null)
                 {
-                    context.Patient.Remove(patient);
+                    context.Patients.Remove(patient);
                     await context.SaveChangesAsync();
                 }
 
                 return patient;
             }
 
-            public async Task<ICollection<Patients>> GetAll()
+        public async Task<ICollection<Patient>> GetAll()
+        {
+            var patients = await context.Patients.ToListAsync();
+            if (patients != null)
             {
-                var patient = await context.Patient.ToListAsync();
-                if (patient != null)
-                {
-                    return patient;
-                }
-                return null;
+                return patients;
+            }
+            return null;
+        }
+
+
+        public async Task<Patient> GetById(int id)
+            {
+                var patients = await context.Patients.FindAsync(id);
+                return patients;
             }
 
-            public async Task<Patients> GetById(int id)
-            {
-                var patient = await context.Patient.FindAsync(id);
-                return patient;
-            }
-
-            public async Task<Patients> Post(Patients patient, string password)
+            public async Task<Patient> Post(Patient patient, string password)
             {
                 string hashedPassword = PasswordHasher.HashPassword(password);
                 patient.Patient_HashedPassword = hashedPassword;
-                context.Patient.Add(patient);
+                context.Patients.Add(patient);
                 await context.SaveChangesAsync();
                 return patient;
             }
 
-            public async Task<Patients> Put(Patients patient, int id)
+            public async Task<Patient> Put(Patient patient, int id)
             {
-                var existingPatient = await context.Patient.FindAsync(id);
+                var existingPatient = await context.Patients.FindAsync(id);
 
                 if (existingPatient != null)
                 {

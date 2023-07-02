@@ -1,6 +1,6 @@
 using AppointmentPrj.Interface;
+using AppointmentPrj.Models;
 using AppointmentPrj.Services;
-using Library.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,5 @@
 ﻿using AppointmentPrj.Interface;
+using AppointmentPrj.Models;
 using Library.Models;
 using Microsoft.EntityFrameworkCore;
 

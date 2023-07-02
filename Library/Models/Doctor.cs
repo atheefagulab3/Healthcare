@@ -26,10 +26,14 @@ namespace Library.Models
         public string? DoctorEmail { get; set; }
         [Required]
         public string? DoctorAddress { get; set; }
+
         [Required]
-        public int DoctorMobile { get; set; }
+        [RegularExpression(@"^\d{10}$")]
+        public long DoctorMobile { get; set; }
         [Required]
-        public int EmergencyNo { get; set; }
+        [RegularExpression(@"^\d{10}$")]
+
+        public long EmergencyNo { get; set; }
         [Required]
         public string? Doctor_Experience { get; set; }
         [Required]
@@ -50,6 +54,6 @@ namespace Library.Models
 
         [NotMapped]
         public IFormFile File { get; set; }
-        public ICollection<Patients>? Patient { get; set; }
+        public ICollection<Patient>? Patient { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PatientPrj.DTO
+namespace PatientProject.DTO
 {
     public class Patient_Register_DTO
     {
