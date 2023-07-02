@@ -3,6 +3,7 @@ using Library.Models.Helpers;
 using PatientProject.Interface;
 using Microsoft.EntityFrameworkCore;
 using PatientProject.Models;
+using PatientProject.DTO;
 
 namespace PatientProject.Service
 {
@@ -43,13 +44,13 @@ namespace PatientProject.Service
                 return patients;
             }
 
-            public async Task<Patient> Post(Patient patient, string password)
+            public async Task<Patient> Post(Patient_Password_DTO patient_Password)
             {
-                string hashedPassword = PasswordHasher.HashPassword(password);
-                patient.Patient_HashedPassword = hashedPassword;
-                context.Patients.Add(patient);
+                string hashedPassword = PasswordHasher.HashPassword(patient_Password.Password);
+            patient_Password.patient.Patient_HashedPassword = hashedPassword;
+                context.Patients.Add(patient_Password.patient);
                 await context.SaveChangesAsync();
-                return patient;
+                return patient_Password.patient;
             }
 
             public async Task<Patient> Put(Patient patient, int id)
