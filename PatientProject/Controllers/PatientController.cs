@@ -39,7 +39,7 @@ namespace PatientProject.Controllers
             return await p.GetById(id);
         }
         [HttpPost]
-        public async Task<Patient> Add(Patient_Password_DTO patient_Password)
+        public async Task<Patient> Add( Patient_Password_DTO patient_Password)
         {
             return await p.Post(patient_Password);
         }

@@ -26,7 +26,7 @@ namespace Library.Models
         public string? Patient_Email { get; set; }
         [Required]
         public string? Patient_UserName { get; set; }
-        [Required]
+        
         public string? Patient_HashedPassword { get; set; }
 
 

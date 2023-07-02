@@ -1,4 +1,5 @@
 ﻿using Library.Models;
+using Library.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,7 +10,7 @@ namespace DoctorPrj.Repositories
         Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
         Task<Doctor> GetDoctorByIdAsync(int doctorId);
         Task<Doctor> GetDoctorByUsernameAsync(string username);
-        Task<int> AddDoctorAsync([FromForm] Doctor doctor, string password);
+        public Task<int> AddDoctorAsync([FromForm] DoctorwithPassword DoctorwithPassword);
         Task UpdateDoctorAsync(Doctor doctor);
         Task DeleteDoctorAsync(int doctorId);
         bool VerifyPassword(string password, string hashedPassword);

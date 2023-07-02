@@ -40,15 +40,15 @@ namespace DoctorPrj.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddDoctor([FromForm] Doctor doctor, string password)
+        public async Task<IActionResult> AddDoctor([FromForm] DoctorwithPassword DoctorwithPassword)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            int doctorId = await _doctorRepository.AddDoctorAsync(doctor, password);
-            return CreatedAtAction(nameof(GetDoctor), new { id = doctorId }, doctor);
+            int doctorId = await _doctorRepository.AddDoctorAsync(DoctorwithPassword);
+            return CreatedAtAction(nameof(GetDoctor), new { id = doctorId }, DoctorwithPassword.doctor);
         }
 
         [HttpPut("{id}")]

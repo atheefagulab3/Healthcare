@@ -1,6 +1,7 @@
 ﻿
 using DoctorPrj.Models;
 using Library.Models;
+using Library.Models.DTO;
 using Library.Models.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,21 +36,21 @@ namespace DoctorPrj.Repositories
                 return await _context.Doctors.FirstOrDefaultAsync(d => d.Username == username);
             }
 
-            public async Task<int> AddDoctorAsync([FromForm] Doctor doctor, string password)
+            public async Task<int> AddDoctorAsync([FromForm] DoctorwithPassword DoctorwithPassword)
             {
-                string path = Path.Combine(@"C:\Users\HP\Pictures\img", doctor.ImageName);
+                string path = Path.Combine(@"E:\BigBang\healthcare\public\Img", DoctorwithPassword.doctor.ImageName);
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
-                    doctor.File.CopyTo(stream);
+                DoctorwithPassword. doctor.File.CopyTo(stream);
                 }
-                string hashedPassword = PasswordHasher.HashPassword(password);
-                doctor.HashedPassword = hashedPassword;
-                doctor.Status = "pending";
-                doctor.LastLogin = default;
+                string hashedPassword = PasswordHasher.HashPassword(DoctorwithPassword.password);
+            DoctorwithPassword.doctor.HashedPassword = hashedPassword;
+            DoctorwithPassword. doctor.Status = "pending";
+            DoctorwithPassword. doctor.LastLogin = default;
 
-                _context.Doctors.Add(doctor);
+                _context.Doctors.Add(DoctorwithPassword.doctor);
                 await _context.SaveChangesAsync();
-                return doctor.DoctorID;
+                return DoctorwithPassword.doctor.DoctorID;
             }
 
 

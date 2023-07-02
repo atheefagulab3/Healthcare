@@ -4,6 +4,7 @@ using PatientProject.Interface;
 using Microsoft.EntityFrameworkCore;
 using PatientProject.Models;
 using PatientProject.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PatientProject.Service
 {
@@ -44,7 +45,7 @@ namespace PatientProject.Service
                 return patients;
             }
 
-            public async Task<Patient> Post(Patient_Password_DTO patient_Password)
+            public async Task<Patient> Post( Patient_Password_DTO patient_Password)
             {
                 string hashedPassword = PasswordHasher.HashPassword(patient_Password.Password);
             patient_Password.patient.Patient_HashedPassword = hashedPassword;
