@@ -20,6 +20,11 @@ builder.Services.AddScoped<IPatient, PatientRepo>();
 builder.Services.AddScoped<IPatientDTO<Patient_Profile_DTO>, PatientService>();
 
 ConfigurationManager configuration = builder.Configuration;
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling =
+    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -42,6 +47,16 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
     };
 });
+
+
+
+
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Corspolicy", builder =>

@@ -4,6 +4,7 @@ using Library.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorPrj.Services
 {
@@ -33,5 +34,13 @@ namespace DoctorPrj.Services
 
             return doctorPatientDTOs;
         }
+        public async Task<DoctorActive_DTO> Activation(int id, DoctorActive_DTO doctorActivationDTO)
+        {
+            Doctor doctor = await _doctorRepository.GetDoctorByIdAsync(id);
+            doctor.Status = doctorActivationDTO.status;
+            await _doctorRepository.UpdateDoctorAsync(doctor);
+            return doctorActivationDTO;
+        }
+        
     }
 }

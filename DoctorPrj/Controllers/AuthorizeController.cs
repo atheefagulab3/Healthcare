@@ -56,7 +56,13 @@ namespace DoctorPrj.Controllers
                         expires: DateTime.UtcNow.AddMinutes(10),
                         signingCredentials: signIn);
 
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                    var response = new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        doctorId = doctor.DoctorID,
+                    };
+
+                    return Ok(response);
                 }
                 else
                 {

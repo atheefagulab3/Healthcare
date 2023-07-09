@@ -5,7 +5,7 @@ namespace AppointmentPrj.Interface
 {
     public interface IAppointmentService
     {
-        Task<int> CreateInitialAppointment(InitialAppointmentDTO initialAppointmentDTO);
+       public  Task<InitialAppointmentDTO> CreateInitialAppointment(InitialAppointmentDTO initialAppointmentDTO);
         Task UpdateAppointment(UpdateAppointmentDTO updateAppointmentDTO);
         Task ConfirmAppointment(ConfirmAppointmentDTO confirmAppointmentDTO);
         Task<Appoinments> GetAppointment(int appointmentId);

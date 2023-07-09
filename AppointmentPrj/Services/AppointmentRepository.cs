@@ -49,6 +49,11 @@ namespace AppointmentPrj.Services
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task<List<Appoinments>> FilterByDoctor(int id)
+        {
+            var appointments = await _context.Appoinments.Where(a => a.Doctor_ID == id).ToListAsync();
+            return appointments;
+        }
     }
 }
 

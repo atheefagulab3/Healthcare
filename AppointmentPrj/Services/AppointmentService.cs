@@ -1,5 +1,6 @@
 ﻿using AppointmentPrj.DTO;
 using AppointmentPrj.Interface;
+using AppointmentPrj.Models;
 using Library.Models;
 
 namespace AppointmentPrj.Services
@@ -7,23 +8,27 @@ namespace AppointmentPrj.Services
     public class AppointmentService : IAppointmentService
     {
         private readonly IAppointmentRepository _appointmentRepository;
+        private readonly AppointmentContext _context;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository, AppointmentContext context)
         {
             _appointmentRepository = appointmentRepository;
+            _context = context;
         }
 
-        public async Task<int> CreateInitialAppointment(InitialAppointmentDTO initialAppointmentDTO)
+        public async Task<InitialAppointmentDTO> CreateInitialAppointment(InitialAppointmentDTO initialAppointmentDTO)
         {
             var appointment = new Appoinments
             {
                 Patient_ID = initialAppointmentDTO.Patient_ID,
                 Doctor_ID = initialAppointmentDTO.Doctor_ID,
-                Reason_of_visit = initialAppointmentDTO.Reason_of_visit,
-                Status = initialAppointmentDTO.Status
+                Reason_of_visit = initialAppointmentDTO.Reason_of_visit
             };
 
-            return await _appointmentRepository.CreateAppointment(appointment);
+            _context.Appoinments.Add(appointment);
+            await _context.SaveChangesAsync();
+
+            return initialAppointmentDTO;
         }
 
         public async Task UpdateAppointment(UpdateAppointmentDTO updateAppointmentDTO)
@@ -70,5 +75,6 @@ namespace AppointmentPrj.Services
         {
             await _appointmentRepository.DeleteAppointment(appointmentId);
         }
+        
     }
 }

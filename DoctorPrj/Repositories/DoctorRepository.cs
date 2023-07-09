@@ -53,7 +53,7 @@ namespace DoctorPrj.Repositories
                 return DoctorwithPassword.doctor.DoctorID;
             }
 
-
+       
 
             public async Task UpdateDoctorAsync(Doctor doctor)
             {
@@ -76,6 +76,28 @@ namespace DoctorPrj.Repositories
             {
                 return PasswordHasher.VerifyPassword(password, hashedPassword);
             }
+        public async Task<Doctor_Password_DTO> ChangePassword(int id, string oldPassword, string newPassword)
+        {
+            Doctor doctor = await _context.Doctors.FindAsync(id);
+
+
+            bool isOldPasswordCorrect = PasswordHasher.VerifyPassword(oldPassword, doctor.HashedPassword);
+            if (!isOldPasswordCorrect)
+            {
+                return null;
+            }
+            string newHashedPassword = PasswordHasher.HashPassword(newPassword);
+            doctor.HashedPassword = newHashedPassword;
+            await _context.SaveChangesAsync();
+
+            return new Doctor_Password_DTO
+            {
+                Id = doctor.DoctorID,
+                Password = newPassword,
+                HashedPassword = newHashedPassword
+            };
+
         }
+    }
     }
 

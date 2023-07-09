@@ -13,6 +13,5 @@ namespace AppointmentPrj.DTO
         [Required]
         public string? Reason_of_visit { get; set; }
 
-        public string Status { get; set; } = "waiting";
     }
 }

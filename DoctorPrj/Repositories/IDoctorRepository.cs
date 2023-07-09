@@ -14,5 +14,7 @@ namespace DoctorPrj.Repositories
         Task UpdateDoctorAsync(Doctor doctor);
         Task DeleteDoctorAsync(int doctorId);
         bool VerifyPassword(string password, string hashedPassword);
+
+        public Task<Doctor_Password_DTO> ChangePassword(int id, string oldPassword, string newPassword);
     }
 }

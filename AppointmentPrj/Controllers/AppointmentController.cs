@@ -1,5 +1,6 @@
 ﻿using AppointmentPrj.DTO;
 using AppointmentPrj.Interface;
+using Library.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,17 +11,19 @@ namespace AppointmentPrj.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly IAppointmentRepository _appointmentRepository;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService,IAppointmentRepository appointmentRepository)
         {
             _appointmentService = appointmentService;
+            _appointmentRepository = appointmentRepository;
         }
 
         [HttpPost("initial")]
-        public async Task<IActionResult> CreateInitialAppointment(InitialAppointmentDTO initialAppointmentDTO)
+        public async Task<InitialAppointmentDTO> CreateInitialAppointment(InitialAppointmentDTO initialAppointmentDTO)
         {
-            var appointmentId = await _appointmentService.CreateInitialAppointment(initialAppointmentDTO);
-            return CreatedAtAction(nameof(GetAppointment), new { id = appointmentId }, null);
+            var appointment = await _appointmentService.CreateInitialAppointment(initialAppointmentDTO);
+            return appointment;
         }
 
         [HttpPut("update")]
@@ -62,6 +65,12 @@ namespace AppointmentPrj.Controllers
         {
             await _appointmentService.DeleteAppointment(id);
             return NoContent();
+        }
+        [HttpGet("FilterbyDoctor/{id}")]
+        public async Task<List<Appoinments>> Filter(int id)
+        {
+            var appointments = await _appointmentRepository.FilterByDoctor(id);
+            return appointments;
         }
     }
 }

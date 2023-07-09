@@ -10,5 +10,6 @@ namespace AppointmentPrj.Interface
         Task<Appoinments> GetAppointment(int appointmentId);
         Task<List<Appoinments>> GetAllAppointments();
         Task DeleteAppointment(int appointmentId);
+        public Task<List<Appoinments>> FilterByDoctor(int id);
     }
 }
